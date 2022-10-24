@@ -23,6 +23,7 @@ namespace BabkaTourist.PAges
     public partial class AddPage : Page
     {
         ApplicationContext db;
+        public Tour editingTour;
         const string tagBtn_name = "add_tagBtn";
         const string locBtn_name = "add_locBtn";
         const string emplBtn_name = "add_emplBtn";
@@ -32,6 +33,54 @@ namespace BabkaTourist.PAges
         {
             InitializeComponent();
             this.db = db;
+        }
+
+        public void EditTour(Tour tour)
+        {
+            /*editingTour = tour;
+            name.Text = tour.name;
+            number.Text = tour.number;
+            foreach (Location location in db.Locations)
+            {
+                foreach (Thing item in location.Things)
+                {
+                    if (item.id == thing.id)
+                    {
+                        ComboBox_location.Text = location.name;
+                        break;
+                    }
+                }
+            }
+            count_things.Text = thing.count.ToString();
+            foreach (Tag tag in thing.Tags)
+            {
+                Add_selected_tag(tag.name);
+            }
+            foreach (Taken_things item in thing.Taken_Things)
+            {
+                Employee employee = db.Employees.Where(e => e.id == item.id_employee).FirstOrDefault();
+                Thing_employees thing_Employees = new Thing_employees();
+                thing_Employees.SelectedName = $"{employee.surname} {employee.name} {employee.patronymic}";
+                thing_Employees.Count = item.count;
+                thing_Employees.Date = item.date;
+                thing_Employees.Comm = item.comm;
+                thing_s.Add(thing_Employees);
+            }
+
+
+            Add_btn.Content = editBtn;*/
+        }
+        public void Clear()
+        {
+            name.Clear();
+            number.Clear();
+            ComboBox_location.Text = "";
+            count_things.Text = "0";
+            select_tags.Children.RemoveRange(0, select_tags.Children.Count);
+            Add_btn.Content = addBtn;
+            ComboBox_tags.Text = "";
+            list.Items.Refresh();
+
         }
         private void Open_Add_0_Page(object sender, RoutedEventArgs e)
         {

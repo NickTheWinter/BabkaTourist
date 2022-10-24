@@ -22,12 +22,29 @@ namespace BabkaTourist.PAges
     public partial class MainPage : Page
     {
         ApplicationContext db;
+        AddPage addPage;
         List<Tour> tours = new List<Tour>();
         string default_search = "Поиск";
         public MainPage()
         {
             InitializeComponent();
             db = new ApplicationContext();
+            addPage = new AddPage(db);
+            UpdateList(false);
+        }
+
+        public void UpdateList(bool last)
+        {
+            if (!last)
+            {
+                tours = db.Tours.ToList();
+                list.ItemsSource = tours;
+            }
+            else
+            {
+                tours.Add(db.Tours.Last());
+                list.UpdateLayout();
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,30 +75,30 @@ namespace BabkaTourist.PAges
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddPage(db));
+            NavigationService.Navigate(addPage);
         }
         private void list_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            //Data_thing thing = (Data_thing)e.Row.DataContext;
-            //List<Taken_things> taken_s = db.Taken_Things.Where(t => t.id_thing == thing.id).ToList();
-            //if (taken_s.Count != 0)
-            //{
-            //    e.Row.Foreground = Brushes.LightSkyBlue;
-            //}
-            //else
-            //{
-            //    e.Row.Foreground = Brushes.White;
-            //}
+            Tour tour = (Tour)e.Row.DataContext;
+            List<Tour> taken_s = db.Tours.Where(t => t.Id == tour.Id).ToList();
+            if (taken_s.Count != 0)
+            {
+                e.Row.Foreground = Brushes.LightSkyBlue;
+            }
+            else
+            {
+                e.Row.Foreground = Brushes.White;
+            }
 
         }
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           // Data_thing thing = list.SelectedValue as Data_thing;
-           // Thing item = db.Things.Find(thing.id);
-           //
-           // add_Page.Clear();
-           // add_Page.Edit_thing(item, thing);
-           // window1.frame.Navigate(add_Page);
+            Tour tour= list.SelectedValue as Tour;
+            Tour item = db.Tours.Find(tour.Id);
+
+            addPage.Clear();
+            addPage.EditTour(item);
+            NavigationService.Navigate(addPage);
 
         }
     }
