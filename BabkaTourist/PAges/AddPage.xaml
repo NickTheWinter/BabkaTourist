@@ -174,7 +174,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}">
-                    <Image Source="arrow.png" Stretch="Fill"/>
+                    <Image Source="../Images/arrow.png" Stretch="Fill"/>
                 </ToggleButton>
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
@@ -250,8 +250,7 @@
                     <ControlTemplate TargetType="{x:Type Button}">
 
                         <Border x:Name="border" CornerRadius="0 0 0 5" BorderThickness="0" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <Image Source="arrow.png">
-                            </Image>
+                            <Image Source="../Images/arrow.png"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -273,7 +272,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="border" CornerRadius="0 0 5 0" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <Image Source="arrow.png" Stretch="Uniform"/>
+                            <Image Source="../Images/arrow.png" Stretch="Uniform"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -333,7 +332,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
-                    <Image Source="arrow.png" Stretch="Uniform"/>
+                    <Image Source="../Images/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border Grid.Column="1" Background="red">
                     <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyledel}" FontSize="10" x:Name="del_location" Click="del_location_Click"/>
@@ -366,7 +365,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Grid.Column="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
-                    <Image Source="arrow.png" Stretch="Uniform"/>
+                    <Image Source="../Images/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" BorderBrush="#606060" BorderThickness="0" CornerRadius="5 0 0 5">
                     <TextBox x:Name="PART_EditableTextBox" Foreground="White" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
@@ -458,7 +457,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton1}">
-                    <Image Source="arrow.png" Stretch="Fill"/>
+                    <Image Source="../Images/arrow.png" Stretch="Fill"/>
                 </ToggleButton>
                 <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
@@ -488,7 +487,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                    <Image Source="arrow.png" Stretch="Fill"/>
+                    <Image Source="../Images/arrow.png" Stretch="Fill"/>
                 </ToggleButton>
                 <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
@@ -534,7 +533,7 @@
                     </theme:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Grid.Column="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
-                    <Image Source="arrow.png" Stretch="Uniform"/>
+                    <Image Source="../Images/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background1}" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
                     <TextBox x:Name="PART_EditableTextBox" Foreground="White" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox1}" VerticalContentAlignment="Center"/>
@@ -604,9 +603,9 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.55*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.7*"/>
                 <ColumnDefinition Width="0.1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -616,9 +615,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="1" Content="наименование + обозначение" Style="{DynamicResource LabelStyle1}"/>
+            <Label Grid.Column="1" Content="наименование" Style="{DynamicResource LabelStyle1}"/>
             <TextBox x:Name="name" Grid.Column="1" Grid.Row="1" Style="{DynamicResource TextBoxStyle1}"/>
-
+            <Label Grid.Column="2" HorizontalAlignment="Center" Content="Актуальность" Style="{DynamicResource LabelStyle1}"/>
+            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="ComboBox_tags" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row ="3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -629,9 +629,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content="номер" Style="{DynamicResource LabelStyle1}"/>
+                <Label Content="Описание" Style="{DynamicResource LabelStyle1}"/>
                 <TextBox x:Name="number" Grid.Row="1" Style="{DynamicResource TextBoxStyle1}"/>
-                <Label Grid.Column="2" Content="расположение" Style="{DynamicResource LabelStyle1}"/>
+                <Label Grid.Column="2" Content="Тип" Style="{DynamicResource LabelStyle1}"/>
                 <ComboBox x:Name="ComboBox_location" Grid.Row="1" Grid.Column="2" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate2}"/>
             </Grid>
             <Grid Grid.Column="3" Grid.RowSpan="2">
@@ -642,10 +642,10 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="количество" Style="{DynamicResource LabelStyle1}"/>
-                <Label Grid.Column="2" Content="категории" Style="{DynamicResource LabelStyle1}"/>
+                <Label Content="кол-во билетов" Style="{DynamicResource LabelStyle1}"/>
+                <Label Grid.Column="4" Content="Стоимость" Style="{DynamicResource LabelStyle1}"/>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -668,7 +668,7 @@
                     </Border>
 
                 </Grid>
-                <ComboBox Grid.Row="1" Grid.Column="2" x:Name="ComboBox_tags" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate5}"/>
+                <TextBox Grid.Row="1" Grid.Column="4" x:Name="Price" Padding="0 0 30 0" Text="0" Style="{DynamicResource TextBoxStyle1}"/>
             </Grid>
 
             <Grid Grid.Column="3" Grid.Row="3">
@@ -713,7 +713,7 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
                 </FrameworkElement.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ФИО" Width="*" Binding="{Binding SelectedName,Mode=TwoWay}">
+                    <DataGridTextColumn Header="Наименование" Width="0.5*" Binding="{Binding SelectedName,Mode=TwoWay}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -760,7 +760,7 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Кол-во" Width="0.2*" Binding="{Binding Count,Mode =TwoWay}">
+                    <DataGridTextColumn Header="Кол-во звезд" Width="0.2*" Binding="{Binding Count,Mode =TwoWay}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -807,18 +807,8 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Дата" Width="0.3*">
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" Style="{DynamicResource DatePickerStyle1}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" Style="{DynamicResource DatePickerStyle1}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.HeaderStyle>
+                    <DataGridComboBoxColumn Header="страна" Width="0.3*" SelectedItemBinding="{Binding Country.Name}">
+                        <DataGridComboBoxColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#0D0D0D"/>
                                 <Setter Property="BorderBrush" Value="White"/>
@@ -826,25 +816,9 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridComboBoxColumn.HeaderStyle>
 
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Комментарий" Width="*" Binding="{Binding Comm,Mode=TwoWay}" EditingElementStyle="{DynamicResource TextBoxlistStyle}">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#0D0D0D"/>
-                                <Setter Property="BorderBrush" Value="White"/>
-                                <Setter Property="BorderThickness" Value="0 2 2 2"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
+                    </DataGridComboBoxColumn>
                     <DataGridTemplateColumn IsReadOnly="True" Width="0.1*">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">

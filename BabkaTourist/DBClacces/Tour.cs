@@ -5,13 +5,13 @@ namespace BabkaTourist.DBClacces
     public class Tour
     {
         public int Id { get; set; }
-        public int TicketCount { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Image { get; set; }
-        public float Price { get; set; }
+        public int TicketCount { get; set; } //da
+        public string Name { get; set; } //da
+        public string Description { get; set; } // da
+        public string Image { get; set; } //poher
+        public float Price { get; set; } //da
         public bool isActual { get; set; }
-        public List<Hotel> Hotels { get; set; } = new();
+        public List<Hotel> Hotels { get; set; } = new(); //dopustim
         public Type Type { get; set; }
         public Tour(int id, int ticketCount, string name, string description, string image, float price, bool isActual, Type type,List<Hotel> hotels)
         {
