@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BabkaTourist.DBClacces
 {
-    internal class Hotelimage
+    public class Hotelimage
     {
         public int Id { get; set; }
         public Hotel Hotel { get; set; }
@@ -16,6 +16,10 @@ namespace BabkaTourist.DBClacces
             Id = id;
             this.Hotel = hotel;
             Image = image;
+        }
+        public Hotelimage()
+        {
+
         }
     }
 }

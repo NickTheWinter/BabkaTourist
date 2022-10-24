@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BabkaTourist.DBClacces
 {
-    internal class Country
+    public class Country
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,10 @@ namespace BabkaTourist.DBClacces
         {
             Id = id;
             Name = name;
+        }
+        public Country()
+        {
+
         }
     }
 }

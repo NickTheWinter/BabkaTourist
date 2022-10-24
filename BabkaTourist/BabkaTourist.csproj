@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\arrow_back.png" />
+    <None Remove="Images\del.png" />
     <None Remove="Images\doge.jpg" />
+    <None Remove="Images\save.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\arrow_back.png" />
+    <Resource Include="Images\del.png" />
     <Resource Include="Images\doge.jpg" />
+    <Resource Include="Images\save.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +38,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>
