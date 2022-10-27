@@ -11,9 +11,8 @@ namespace BabkaTourist.DBClacces
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Type(int id, string name, string description)
+        public Type( string name, string description)
         {
-            Id = id;
             Name = name;
             Description = description;
         }

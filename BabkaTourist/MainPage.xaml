@@ -380,10 +380,10 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Кол-во" Binding="{Binding D_number}" Width="0.5*">
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding TicketCount}" Width="0.5*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding D_number}"/>
+                            <Setter Property="ToolTip" Value="{Binding TicketCount}"/>
                             <Setter Property="Background" Value="Transparent"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
@@ -403,10 +403,10 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Описание" Binding="{Binding Number}" Width="0.5*">
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="0.5*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Number}"/>
+                            <Setter Property="ToolTip" Value="{Binding Description}"/>
                             <Setter Property="Background" Value="Transparent"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
@@ -426,7 +426,7 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Стоимость" Binding="{Binding Count}" Width="0.5*">
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Price}" Width="0.5*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="Transparent"/>
@@ -448,10 +448,10 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridCheckBoxColumn Header="Актуальность" Binding="{Binding Location}" Width="0.55*">
+                <DataGridCheckBoxColumn Header="Актуальность" Binding="{Binding isActual}" Width="0.55*">
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Location}"/>
+                            <Setter Property="ToolTip" Value="{Binding isActual}"/>
                             <Setter Property="Background" Value="Transparent"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">

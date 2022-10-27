@@ -10,9 +10,8 @@ namespace BabkaTourist.DBClacces
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Country(int id, string name)
+        public Country( string name)
         {
-            Id = id;
             Name = name;
         }
         public Country()

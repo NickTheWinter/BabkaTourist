@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BabkaTourist.PAges" xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+      xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
       mc:Ignorable="d" Background="#0D0D0D"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddPage">
@@ -311,8 +311,7 @@
             <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.2in"/>
-                    <ColumnDefinition Width="0.3in"/>
+                    <ColumnDefinition Width="19.2"/>
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                     <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
@@ -323,7 +322,7 @@
                                         <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                     </Canvas>
                                     <StackPanel Grid.ColumnSpan="2">
-                                        <Button Content="+" Style="{DynamicResource ButtonStyle4}" x:Name="add_locBtn" Click="Open_Add_0_Page"/>
+                                        <Button Content="+" Style="{DynamicResource ButtonStyle4}" x:Name="add_Btn" Click="Open_Add_0_Page"/>
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </StackPanel>
                                 </Grid>
@@ -334,9 +333,6 @@
                 <ToggleButton x:Name="toggleButton" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
                     <Image Source="../Images/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
-                <Border Grid.Column="1" Background="red">
-                    <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyledel}" FontSize="10" x:Name="del_location" Click="del_location_Click"/>
-                </Border>
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
                     <TextBox x:Name="PART_EditableTextBox" Foreground="White" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
                 </Border>
@@ -410,7 +406,7 @@
                                         <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                     </Canvas>
                                     <StackPanel Grid.ColumnSpan="2">
-                                        <Button Content="+" Style="{DynamicResource ButtonStyle4}" x:Name="add_emplBtn" Click="Open_Add_0_Page"/>
+                                        <Button Content="+" Style="{DynamicResource ButtonStyle4}" x:Name="add_emplBtn" Click="add_emplBtn_Click"/>
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </StackPanel>
                                 </Grid>
@@ -618,7 +614,7 @@
             <Label Grid.Column="1" Content="наименование" Style="{DynamicResource LabelStyle1}"/>
             <TextBox x:Name="name" Grid.Column="1" Grid.Row="1" Style="{DynamicResource TextBoxStyle1}"/>
             <Label Grid.Column="2" HorizontalAlignment="Center" Content="Актуальность" Style="{DynamicResource LabelStyle1}"/>
-            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="ComboBox_tags" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="Actual" Grid.Row="1" Grid.Column="2" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row ="3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -630,9 +626,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Content="Описание" Style="{DynamicResource LabelStyle1}"/>
-                <TextBox x:Name="number" Grid.Row="1" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="Description" Grid.Row="1" Style="{DynamicResource TextBoxStyle1}"/>
                 <Label Grid.Column="2" Content="Тип" Style="{DynamicResource LabelStyle1}"/>
-                <ComboBox x:Name="ComboBox_location" Grid.Row="1" Grid.Column="2" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate2}"/>
+                <ComboBox x:Name="Combo_boxType" Grid.Row="1" Grid.Column="2" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate2}"/>
             </Grid>
             <Grid Grid.Column="3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
@@ -651,7 +647,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="0.3in"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox Padding="0 0 30 0" x:Name="count_things" Text="0" Style="{DynamicResource TextBoxStyle3}" TextChanged="TextBox_TextChanged"/>
+                    <TextBox Padding="0 0 30 0" x:Name="count_bilets" Text="0" Style="{DynamicResource TextBoxStyle3}" TextChanged="TextBox_TextChanged"/>
                     <Border Grid.Column="1" BorderBrush="#606060" CornerRadius="0 5 5 0" BorderThickness="0 1 1 1">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -713,7 +709,7 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
                 </FrameworkElement.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Наименование" Width="0.5*" Binding="{Binding SelectedName,Mode=TwoWay}">
+                    <DataGridTextColumn Header="Наименование" Width="0.5*" Binding="{Binding Name,Mode=TwoWay}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -760,7 +756,7 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Кол-во звезд" Width="0.2*" Binding="{Binding Count,Mode =TwoWay}">
+                    <DataGridTextColumn Header="Кол-во звезд" Width="0.2*" Binding="{Binding CountStars,Mode =TwoWay}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -807,8 +803,8 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridComboBoxColumn Header="страна" Width="0.3*" SelectedItemBinding="{Binding Country.Name}">
-                        <DataGridComboBoxColumn.HeaderStyle>
+                    <DataGridTemplateColumn Header="Страна" Width="0.3*">
+                        <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#0D0D0D"/>
                                 <Setter Property="BorderBrush" Value="White"/>
@@ -816,9 +812,13 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             </Style>
-                        </DataGridComboBoxColumn.HeaderStyle>
-
-                    </DataGridComboBoxColumn>
+                        </DataGridTemplateColumn.HeaderStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Template="{DynamicResource ComboBoxTemplate3}" ItemsSource="{Binding country_s}" IsSynchronizedWithCurrentItem="True" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn IsReadOnly="True" Width="0.1*">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -845,7 +845,7 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="✖"  Background="Red" Style="{DynamicResource ButtonStyle4}"/>
+                                <Button Content="✕"  Background="Red" Style="{DynamicResource ButtonStyle4}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

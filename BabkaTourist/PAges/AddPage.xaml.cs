@@ -1,19 +1,14 @@
 ﻿using BabkaTourist.DBClacces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BabkaTourist.PAges
 {
@@ -24,103 +19,93 @@ namespace BabkaTourist.PAges
     {
         ApplicationContext db;
         public Tour editingTour;
-        const string tagBtn_name = "add_tagBtn";
-        const string locBtn_name = "add_locBtn";
-        const string emplBtn_name = "add_emplBtn";
         const string addBtn = "Добавить запись";
         const string editBtn = "Изменить запись";
-        public AddPage(ApplicationContext db)
+        ObservableCollection<Hotel> hotel_s = new ObservableCollection<Hotel>();
+        public ObservableCollection<String> country_s { get; set; } = new();
+        MainPage MainPage;
+        public AddPage(ApplicationContext db,MainPage mainPage)
         {
             InitializeComponent();
             this.db = db;
+            list.ItemsSource = hotel_s;
+            MainPage = mainPage;
+            Update_ListTypes(false);
+            Update_ListCountry(false);
+            DataContext = this;
         }
 
         public void EditTour(Tour tour)
         {
-            /*editingTour = tour;
-            name.Text = tour.name;
-            number.Text = tour.number;
-            foreach (Location location in db.Locations)
+            editingTour = tour;
+            name.Text = tour.Name;
+            Description.Text = tour.Description;
+            Combo_boxType.Text = tour.Type.Name;
+            count_bilets.Text = tour.TicketCount.ToString();
+            Actual.IsChecked = tour.isActual;
+            Price.Text = tour.Price.ToString();
+            foreach (Hotel item in tour.Hotels)
             {
-                foreach (Thing item in location.Things)
-                {
-                    if (item.id == thing.id)
-                    {
-                        ComboBox_location.Text = location.name;
-                        break;
-                    }
-                }
-            }
-            count_things.Text = thing.count.ToString();
-            foreach (Tag tag in thing.Tags)
-            {
-                Add_selected_tag(tag.name);
-            }
-            foreach (Taken_things item in thing.Taken_Things)
-            {
-                Employee employee = db.Employees.Where(e => e.id == item.id_employee).FirstOrDefault();
-                Thing_employees thing_Employees = new Thing_employees();
-                thing_Employees.SelectedName = $"{employee.surname} {employee.name} {employee.patronymic}";
-                thing_Employees.Count = item.count;
-                thing_Employees.Date = item.date;
-                thing_Employees.Comm = item.comm;
-                thing_s.Add(thing_Employees);
+                hotel_s.Add(item);
             }
 
-
-            Add_btn.Content = editBtn;*/
+            Add_btn.Content = editBtn;
         }
         public void Clear()
         {
             name.Clear();
-            number.Clear();
-            ComboBox_location.Text = "";
-            count_things.Text = "0";
-            select_tags.Children.RemoveRange(0, select_tags.Children.Count);
+            Description.Clear();
+            Combo_boxType.Text = "";
+            count_bilets.Text = "0";
             Add_btn.Content = addBtn;
-            ComboBox_tags.Text = "";
+            Actual.IsChecked = false;
             list.Items.Refresh();
-
         }
         private void Open_Add_0_Page(object sender, RoutedEventArgs e)
         {
-            switch (((Button)sender).Name)
-            {
-                case tagBtn_name:
-                    //Add_tag add_tag_window = new Add_tag(this, db, "tag");
-                    //add_tag_window.Show();
-                    break;
-                case locBtn_name:
-                    //Add_tag add_loc_window = new Add_tag(this, db, "loc");
-                    //add_loc_window.Show();
-                    break;
-                case emplBtn_name:
-                    //Add_employee add_empl_window = new Add_employee(this, db);
-                    //add_empl_window.Show();
-                    break;
-
-            }
+            AddType addType = new AddType(db,this);
+            addType.Show();
         }
-        private void del_location_Click(object sender, RoutedEventArgs e)
+        public void Update_ListTypes(bool last)
         {
-            if (ComboBox_location.Text == "")
+            List<DBClacces.Type> types = db.Types.ToList();
+            if (!last)
             {
-                MessageBox.Show("Значение пусто");
+                foreach (DBClacces.Type type in types)
+                {
+                    ComboBoxItem item = new ComboBoxItem();
+                    item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#262626"));
+                    item.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    item.Foreground = Brushes.White;
+                    item.Content = type.Name;
+                    Combo_boxType.Items.Add(item);
+                }
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Действительно удалить данное расположение?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (result == MessageBoxResult.Yes)
-                {
-                    //Location location = db.Locations.Where(l => l.name == ComboBox_location.Text).FirstOrDefault();
-                    //db.Locations.Remove(location);
-                    //db.SaveChanges();
-                    //ComboBox_location.Items.Clear();
-                    //Update_ListLocations(false);
 
+                ComboBoxItem item = new ComboBoxItem();
+                item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#262626"));
+                item.HorizontalContentAlignment = HorizontalAlignment.Center;
+                item.Foreground = Brushes.White;
+                item.Content = types.Last().Name;
+                Combo_boxType.Items.Add(item);
+            }
+        }
+        public void Update_ListCountry(bool last)
+        {
+            List<Country> countries = db.Countries.ToList();
+            if (!last)
+            {
+                foreach (Country item in countries)
+                {
+                    country_s.Add(item.Name);
                 }
             }
-
+            else
+            {
+                country_s.Add(countries.Last().Name);
+            }
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -170,138 +155,58 @@ namespace BabkaTourist.PAges
         }
         private void Add_btn_Click(object sender, RoutedEventArgs e)
         {
-            //DoubleAnimation animation = new DoubleAnimation();
-            //animation.From = 1;
-            //animation.To = 0;
-            //animation.Duration = TimeSpan.FromSeconds(2);
-            //switch (Add_btn.Content)
-            //{
-            //    case addBtn:
-            //        if (name.Text != "" && ComboBox_location.Text != "" && number.Text != "" && count_things.Text != "0" && select_tags.Children.Count > 0)
-            //        {
-            //            Thing thing = new Thing();
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = 1;
+            animation.To = 0;
+            animation.Duration = TimeSpan.FromSeconds(2);
+            switch (Add_btn.Content)
+            {
+                case addBtn:
+                    if (name.Text != "" && Combo_boxType.Text != "" && count_bilets.Text != "0" && Description.Text != "")
+                    {
+                        Tour tour = new Tour();
+                        tour.Name = name.Text;
+                        tour.Description = Description.Text;
+                        tour.Price = float.Parse(Price.Text);
+                        tour.TicketCount = int.Parse(count_bilets.Text);
+                        tour.isActual = Actual.IsChecked.Value;
+                        DBClacces.Type type = db.Types.Where(x => x.Name == Combo_boxType.Text).FirstOrDefault();
+                        tour.Type = type;
+                        db.Tours.Add(tour);
+                        db.SaveChanges();
+                        save_img.Opacity = 1;
+                        save_img.BeginAnimation(Image.OpacityProperty, animation);
+                    }
+                    break;
+                case editBtn:
+                    editingTour.Name = name.Text;
+                    editingTour.Description = Description.Text;
+                    editingTour.Price= float.Parse(Price.Text);
+                    editingTour.TicketCount = int.Parse(count_bilets.Text);
+                    editingTour.isActual = Actual.IsChecked.Value;
+                    db.SaveChanges();
 
-            //            thing.count = Convert.ToInt32(count_things.Text);
-            //            thing.name = name.Text;
-            //            thing.number = number.Text;
-
-            //            foreach (Grid item in select_tags.Children)
-            //            {
-            //                var borders = item.Children;
-            //                Border border = (Border)borders[0];
-            //                string tag_selected = (string)((Label)border.Child).Content;
-            //                thing.Tags.Add(db.Tags.Where(t => t.name == tag_selected).FirstOrDefault());
-            //            }
-
-            //            try
-            //            {
-            //                foreach (Thing_employees item in thing_s)
-            //                {
-            //                    if (item.Count != null && item.Date != null)
-            //                    {
-            //                        string[] fio = item.SelectedName.Split(' ');
-            //                        Employee employee = db.Employees.Where(e => e.surname == fio[0]).Where(e => e.name == fio[1]).Where(e => e.patronymic == fio[2]).FirstOrDefault();
-            //                        Taken_things taken_Things = new Taken_things();
-            //                        taken_Things.employee = employee;
-            //                        taken_Things.thing = editing_thing;
-            //                        taken_Things.count = item.Count;
-            //                        taken_Things.date = item.Date;
-            //                        taken_Things.comm = item.Comm;
-            //                        thing.Taken_Things.Add(taken_Things);
-
-            //                    }
-
-            //                }
-            //            }
-            //            catch { }
-
-            //            Location location = db.Locations.Where(l => l.name == ComboBox_location.Text).FirstOrDefault();
-            //            location.Things.Add(thing);
-            //            db.Things.Add(thing);
-            //            db.SaveChanges();
-            //            main_Page.Update_list(true);
-            //        }
-            //        save_img.Opacity = 1;
-            //        save_img.BeginAnimation(Image.OpacityProperty, animation);
-            //        break;
-
-            //    case editBtn:
-            //        editing_thing.name = name.Text;
-            //        editing_thing.number = number.Text;
-            //        editing_thing.count = Convert.ToInt32(count_things.Text);
-            //        editing_thing.Tags.Clear();
-            //        foreach (Grid item in select_tags.Children)
-            //        {
-            //            var borders = item.Children;
-            //            Border border = (Border)borders[0];
-            //            string tag_selected = (string)((Label)border.Child).Content;
-            //            editing_thing.Tags.Add(db.Tags.Where(t => t.name == tag_selected).FirstOrDefault());
-            //        }
-
-            //        editing_thing.Taken_Things.Clear();
-
-            //        foreach (Thing_employees item in thing_s)
-            //        {
-            //            if (item.Count != null && item.Date != null)
-            //            {
-            //                string[] fio = item.SelectedName.Split(' ');
-            //                Employee employee = db.Employees.Where(e => e.surname == fio[0]).Where(e => e.name == fio[1]).Where(e => e.patronymic == fio[2]).FirstOrDefault();
-            //                Taken_things taken_Things = new Taken_things();
-            //                taken_Things.employee = employee;
-            //                taken_Things.thing = editing_thing;
-            //                taken_Things.count = item.Count;
-            //                taken_Things.date = item.Date;
-            //                taken_Things.comm = item.Comm;
-            //                editing_thing.Taken_Things.Add(taken_Things);
-            //            }
-
-            //        }
-
-
-            //        foreach (Location loc in db.Locations)
-            //        {
-            //            if (loc.Things.Where(t => t.id == editing_thing.id).Count() != 0)
-            //            {
-            //                loc.Things.Remove(editing_thing);
-            //                break;
-            //            }
-            //        }
-
-            //        Location location_add = db.Locations.Where(l => l.name == ComboBox_location.Text).FirstOrDefault();
-            //        location_add.Things.Add(editing_thing);
-            //        db.SaveChanges();
-
-            //        editing_item.Name = editing_thing.name;
-            //        editing_item.Number = editing_thing.number;
-            //        editing_item.Location = ComboBox_location.Text;
-            //        editing_item.Count = editing_thing.count;
-            //        string tags = "";
-            //        int count = 1;
-            //        foreach (Tag tag in editing_thing.Tags)
-            //        {
-            //            if (count == editing_thing.Tags.Count)
-            //                tags += tag.name;
-            //            else
-            //                tags += tag.name + "; ";
-            //        }
-            //        editing_item.Tag = tags;
-            //        main_Page.list.Items.Refresh();
-            //        save_img.Opacity = 1;
-            //        save_img.BeginAnimation(Image.OpacityProperty, animation);
-            //        break;
-            //}
+                    save_img.Opacity = 1;
+                    save_img.BeginAnimation(Image.OpacityProperty, animation);
+                    break;
+            }
         }
         private void Del_thing(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Действительно удалить данную деталь?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+            MessageBoxResult result = MessageBox.Show("Действительно удалить данный тур?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             if (result == MessageBoxResult.Yes)
             {
-                //db.Things.Remove(editing_thing);
-                //db.SaveChanges();
-                //main_Page.things.Clear();
-                //main_Page.Update_list(false);
-                //window1.frame.Navigate(main_Page);
+                db.Tours.Remove(editingTour);
+                db.SaveChanges();
+                MainPage.UpdateList(false);
+                NavigationService.GoBack();
             }
+        }
+
+        private void add_emplBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddCountry addCountry = new AddCountry(db, this);
+            addCountry.Show();
         }
     }
 }

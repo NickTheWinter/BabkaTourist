@@ -29,7 +29,7 @@ namespace BabkaTourist.PAges
         {
             InitializeComponent();
             db = new ApplicationContext();
-            addPage = new AddPage(db);
+            addPage = new AddPage(db,this);
             UpdateList(false);
         }
 
